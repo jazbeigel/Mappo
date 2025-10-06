@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
   Alert,
@@ -497,6 +497,49 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 32,
     justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+  scheduleModal: {
+    backgroundColor: '#fff',
+    borderRadius: 28,
+    padding: 24,
+  },
+  selectedPackageInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+    marginBottom: 16,
+  },
+  selectedPackageImage: {
+    width: 64,
+    height: 64,
+    borderRadius: 16,
+  },
+  selectedPackageDescription: {
+    marginTop: 4,
+    color: '#4A4A4A',
+  },
+  scheduleOptionsTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: palette.dark,
+    marginBottom: 12,
+  },
+  scheduleOption: {
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    marginBottom: 12,
+  },
+  scheduleOptionLabel: {
+    fontWeight: '600',
+    color: palette.dark,
+  },
+  cameraActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 16,
   },
   modalTitle: {
     color: '#fff',
