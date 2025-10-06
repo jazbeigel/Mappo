@@ -10,9 +10,17 @@
   },
   "dependencies": {
     "expo": "~54.0.12",
+<<<<<<< HEAD
     "expo-calendar": "~15.0.7",
     "expo-camera": "~17.0.8",
+=======
+    "expo-calendar": "~12.5.1",
+    "expo-constants": "~16.0.2",
+    "expo-document-picker": "~12.0.2",
+    "expo-notifications": "~0.28.10",
+>>>>>>> 35325f79ff63dc1b9bf2147885fd11c8aeea46a6
     "expo-status-bar": "~3.0.8",
+    "firebase": "^10.13.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.4",
