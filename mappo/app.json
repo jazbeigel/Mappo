@@ -31,7 +31,12 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-barcode-scanner"
+      "expo-barcode-scanner",
+      "expo-camera",
+      {
+        "cameraPermission": "Se necesita acceso a la cámara para tomar fotos."
+      }
     ]
+    
   }
 }

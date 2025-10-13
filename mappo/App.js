@@ -5,6 +5,7 @@ import CommunicationsFeature from './src/features/communications/CommunicationsF
 import FirebaseFeature from './src/features/firebase/FirebaseFeature';
 import CalendarFeature from './src/features/calendar/CalendarFeature';
 import NotificationsFeature from './src/features/notifications/NotificationsFeature';
+import CameraFeature from './src/features/camera/CameraFeature';
 import './src/notifications/setup';
 
 const palette = {
@@ -26,8 +27,14 @@ const FEATURES = [
   {
     key: 'firebase',
     title: 'Firebase',
-    description: 'Cloud Storage y Firestore',
+    description: 'Subida de archivos y base de datos',
     component: FirebaseFeature,
+  },
+  {
+    key: 'camera',
+    title: 'Cámara',
+    description: 'Acceso a la cámara del dispositivo',
+    component: CameraFeature,
   },
   {
     key: 'calendar',
@@ -57,8 +64,7 @@ export default function App() {
       <View style={styles.container}>
         <Text style={styles.heading}>Mappo Toolkit</Text>
         <Text style={styles.subheading}>
-          Elige una funcionalidad para probarla en iOS y Android. Cada módulo está separado y
-          optimizado.
+          Elige una funcionalidad para probarla en iOS y Android. Cada módulo está separado y optimizado.
         </Text>
 
         <ScrollView

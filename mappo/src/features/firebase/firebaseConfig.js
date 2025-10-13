@@ -1,41 +1,62 @@
-import { getApps, initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
+import React, { useEffect, useState, useRef } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { CameraView, useCameraPermissions } from 'expo-camera';
 
-const firebaseConfig = {
-  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY ?? '',
-  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN ?? '',
-  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID ?? '',
-  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET ?? '',
-  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID ?? '',
-  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID ?? '',
-};
+export default function CameraFeature() {
+  const [permission, requestPermission] = useCameraPermissions();
+  const [photoUri, setPhotoUri] = useState(null);
+  const cameraRef = useRef(null);
 
-export const requiredFirebaseKeys = Object.keys(firebaseConfig);
+  useEffect(() => {
+    if (!permission) {
+      requestPermission();
+    }
+  }, []);
 
-export const isFirebaseConfigValid = requiredFirebaseKeys.every(
-  (key) => typeof firebaseConfig[key] === 'string' && firebaseConfig[key].length > 0
-);
-
-let appInstance;
-
-export function getFirebaseApp() {
-  if (!isFirebaseConfigValid) {
-    throw new Error('Firebase no está configurado correctamente.');
+  if (!permission) {
+    return <View><Text style={styles.text}>Cargando permisos...</Text></View>;
   }
 
-  if (!appInstance) {
-    const apps = getApps();
-    appInstance = apps.length ? apps[0] : initializeApp(firebaseConfig);
+  if (!permission.granted) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Se necesita permiso para acceder a la cámara.</Text>
+        <TouchableOpacity style={styles.button} onPress={requestPermission}>
+          <Text style={styles.buttonText}>Conceder permiso</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
-  return appInstance;
+  const takePhoto = async () => {
+    if (cameraRef.current) {
+      const photo = await cameraRef.current.takePictureAsync();
+      setPhotoUri(photo.uri);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <CameraView ref={cameraRef} style={styles.camera} facing="back" />
+      <TouchableOpacity style={styles.button} onPress={takePhoto}>
+        <Text style={styles.buttonText}>Tomar foto</Text>
+      </TouchableOpacity>
+      {photoUri && (
+        <Text style={styles.text}>📷 Foto guardada en: {photoUri}</Text>
+      )}
+    </View>
+  );
 }
 
-export function getFirebaseStorage() {
-  return getStorage(getFirebaseApp());
-}
-
-export function getFirestoreInstance() {
-  return getFirestore(getFirebaseApp());
-}
+const styles = StyleSheet.create({
+  container: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  camera: { width: '100%', height: 400, borderRadius: 20 },
+  button: {
+    backgroundColor: '#38bdf8',
+    padding: 12,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  buttonText: { color: '#fff', fontWeight: '600' },
+  text: { color: '#f8fafc', marginTop: 10, textAlign: 'center' },
+});
