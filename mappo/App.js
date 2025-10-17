@@ -4,9 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import CommunicationsFeature from './src/features/communications/CommunicationsFeature';
 import FirebaseFeature from './src/features/firebase/FirebaseFeature';
 import CalendarFeature from './src/features/calendar/CalendarFeature';
-import NotificationsFeature from './src/features/scanerQR/ScanerFeature';
+import ScanerFeature from './src/features/scanerQR/ScanerFeature';
 import CameraFeature from './src/features/camera/CameraFeature';
-import './src/notifications/setup';
 
 const palette = {
   background: '#0f172a',
@@ -43,10 +42,10 @@ const FEATURES = [
     component: CalendarFeature,
   },
   {
-    key: 'notifications',
-    title: 'Notificaciones',
-    description: 'Push en iOS y Android',
-    component: NotificationsFeature,
+    key: 'scaner',
+    title: 'Scaner',
+    description: 'Acceso a la camara para scaner de QRs',
+    component: ScanerFeature,
   },
 ];
 
