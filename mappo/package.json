@@ -14,14 +14,14 @@
     "expo-barcode-scanner": "^13.0.1",
     "expo-calendar": "~15.0.7",
     "expo-camera": "~17.0.8",
-    "expo-constants": "~16.0.2",
-    "expo-document-picker": "~12.0.2",
-    "expo-notifications": "~0.28.10",
+    "expo-constants": "~17.1.7",
+    "expo-document-picker": "~13.1.6",
+    "expo-notifications": "~0.28.19",
     "expo-status-bar": "~3.0.8",
-    "firebase": "^10.13.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-native": "0.76.0",
-    "react-native-web": "~0.19.10"
+    "firebase": "^11.10.0",
+    "react": "19.2.0",
+    "react-dom": "18.3.1",
+    "react-native": "0.76.9",
+    "react-native-web": "~0.19.13"
   }
 }
