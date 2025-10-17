@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import CommunicationsFeature from './src/features/communications/CommunicationsFeature';
 import FirebaseFeature from './src/features/firebase/FirebaseFeature';
 import CalendarFeature from './src/features/calendar/CalendarFeature';
-import NotificationsFeature from './src/features/notifications/NotificationsFeature';
+import NotificationsFeature from './src/features/scanerQR/ScanerFeature';
 import CameraFeature from './src/features/camera/CameraFeature';
 import './src/notifications/setup';
 
